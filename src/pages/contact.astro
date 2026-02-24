@@ -1,69 +1,48 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Features from "../components/widgets/Features.astro";
-import Content from "../components/widgets/Content.astro";
 import Form from "../components/ui/Form.astro";
 
 const metadata = {
-    title: "Contact",
-    description: "Get in touch with us to discuss your next project.",
+    title: "Kontakt",
+    description: "Skontaktuj sie z nami, aby omowic Twoj projekt B2B.",
 };
-
-const visionText = ["Get in touch with us to discuss your next project."];
 ---
 
 <BaseLayout {metadata}>
-    <Content tagline="Contact" title="Contact" description={visionText} />
-    <div
-        class="mx-auto max-w-xl bg-card border border-border rounded-3xl p-8 shadow-sm mb-12 md:mb-16"
-    >
-        <Form />
-    </div>
-    <Features
-        tagline="Contact Means"
-        title="We are here to help you"
-        subtitle="Choose the communication channel you prefer. We respond in less than 24 hours."
-        classes={{ container: "pt-0 md:pt-0" }}
-        features={[
-            {
-                title: "Phone",
-                description: "+123 456 7890",
-                icon: "lucide:phone",
-                iconClass: "bg-green-500/10 text-green-400",
-            },
-            {
-                title: "Email",
-                description: "contact@company.com",
-                icon: "lucide:mail",
-                iconClass: "bg-yellow-500/10 text-yellow-400",
-            },
-            {
-                title: "Location",
-                description: "City, Country",
-                icon: "lucide:map-pin",
-                iconClass: "bg-red-500/10 text-red-400",
-            },
-            {
-                title: "Personalized Attention",
-                description:
-                    "We understand your needs to offer tailored solutions.",
-                icon: "lucide:user-check",
-                iconClass: "bg-blue-500/10 text-blue-400",
-            },
-            {
-                title: "Technical Support",
-                description:
-                    "We resolve any doubt or technical incident quickly.",
-                icon: "lucide:wrench",
-                iconClass: "bg-purple-500/10 text-purple-400",
-            },
-            {
-                title: "Strategic Consulting",
-                description:
-                    "We advise you to ensure the success of your project.",
-                icon: "lucide:briefcase",
-                iconClass: "bg-pink-500/10 text-pink-400",
-            },
-        ]}
-    />
+    <section class="pt-40 pb-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="reveal-on-scroll">
+                    <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Kontakt</span>
+                    <h1 class="font-serif text-5xl md:text-7xl leading-tight mb-8 text-balance">
+                        <span class="inline-block" aria-hidden="true">&rarr;</span> Porozmawiajmy
+                    </h1>
+                    <p class="text-muted-foreground text-lg max-w-md leading-relaxed mb-8">
+                        Masz projekt? Potrzebujesz konsultacji? A moze po prostu chcesz zapytac o mozliwosci wspolpracy? Napisz do nas.
+                    </p>
+                    <a
+                        class="inline-block text-2xl border-b border-muted-foreground pb-2 hover:border-foreground transition-colors"
+                        href="mailto:hello@b2bcollective.pl"
+                    >
+                        hello@b2bcollective.pl
+                    </a>
+
+                    <div class="mt-16 grid grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Telefon</h3>
+                            <p class="text-muted-foreground">+48 123 456 789</p>
+                        </div>
+                        <div>
+                            <h3 class="uppercase tracking-widest text-xs font-medium mb-4">Lokalizacja</h3>
+                            <p class="text-muted-foreground">Warszawa, Polska</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card border border-border p-8 md:p-12 rounded-lg reveal-on-scroll">
+                    <Form />
+                </div>
+            </div>
+        </div>
+    </section>
 </BaseLayout>

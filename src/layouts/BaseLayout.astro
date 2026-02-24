@@ -43,6 +43,9 @@ const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
             ignoreTitleTemplate={finalIgnoreTitleTemplate}
         />
         <Schema type="WebSite" data={{}} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
         <slot name="head" />
         <script is:inline>
             const getTheme = () => {
@@ -68,34 +71,37 @@ const finalIgnoreTitleTemplate = metadata?.ignoreTitleTemplate || false;
         </script>
     </head>
     <body
-        class="bg-background text-foreground antialiased selection:bg-blue-500/30 dark:selection:text-blue-200"
+        class="bg-background text-foreground font-sans antialiased transition-colors duration-300"
     >
         <a
             href="#main-content"
-            class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 rounded-md bg-primary px-4 py-2 text-white shadow-lg ring-2 ring-white"
+            class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 rounded-md bg-primary px-4 py-2 text-background shadow-lg ring-2 ring-background"
         >
             Skip to content
         </a>
 
         <div class="relative flex min-h-screen flex-col overflow-x-hidden">
-            <!-- Background Glow -->
-            <div class="pointer-events-none fixed inset-0 z-0 hidden md:block">
-                <div
-                    class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.15)_0%,transparent_50%)]"
-                >
-                </div>
-                <div
-                    class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.15)_0%,transparent_50%)]"
-                >
-                </div>
-            </div>
-
             <Navbar />
-            <main id="main-content" class="relative z-10 grow pt-[72px]">
+            <main id="main-content" class="relative z-10 grow">
                 <slot />
             </main>
             <Footer />
         </div>
+
+        <script is:inline>
+            // Intersection Observer for scroll animations
+            document.addEventListener('DOMContentLoaded', () => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+            });
+        </script>
+
         <SpeedInsights />
         <Analytics />
     </body>

@@ -1,25 +1,24 @@
 import ogImage from "../assets/og-image.png";
 
 export const siteConfig = {
-  name: "Astro Starter Pro",
-  description: "Starter template optimized for SEO and performance. A solid foundation to start your projects with best practices.",
-  url: "https://astrostarterpro.com",
-  lang: "en",
-  locale: "en_US",
-  author: "Devgelo",
-  twitter: "@Devgelo",
+  name: "B2B Collective",
+  description: "Kolektyw 3 ekspertow B2B: SEO, Web Development, Strategia. Wspolnie budujemy widocznosc Twojej firmy.",
+  url: "https://b2bcollective.pl",
+  lang: "pl",
+  locale: "pl_PL",
+  author: "B2B Collective",
+  twitter: "@b2bcollective",
   ogImage: ogImage,
   socialLinks: {
     twitter: "https://twitter.com",
-    github: "https://github.com/devgelo-labs/astro-starter-pro",
+    github: "https://github.com",
     discord: "https://discord.com",
+    linkedin: "https://linkedin.com",
   },
   navLinks: [
-    { text: "Home", href: "/" },
-    { text: "About", href: "/about" },
-    { text: "Services", href: "/services" },
-    { text: "Blog", href: "/blog" },
-    { text: "Contact", href: "/contact" },
-    { text: "Widgets", href: "/widgets" },
+    { text: "Eksperci", href: "/#eksperci" },
+    { text: "Uslugi", href: "/#services" },
+    { text: "Baza Wiedzy", href: "/#knowledge" },
+    { text: "Kontakt", href: "/#contact" },
   ],
 };
