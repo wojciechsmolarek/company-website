@@ -8,7 +8,7 @@ export default defineConfig({
   site: "https://b2bcollective.pl/",
   image: {
     service: {
-      entrypoint: "astro/assets/services/no-op",
+      entrypoint: "astro/assets/services/noop",
     },
   },
   integrations: [sitemap(), icon()],
