@@ -2,346 +2,157 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../config/site";
 
+import HeroSection from "../components/sections/HeroSection.astro";
+import MarqueeStrip from "../components/sections/MarqueeStrip.astro";
+import ExpertsSection from "../components/sections/ExpertsSection.astro";
+import WhyUsSection from "../components/sections/WhyUsSection.astro";
+import ServicesSection from "../components/sections/ServicesSection.astro";
+import StrategySection from "../components/sections/StrategySection.astro";
+import ClientsSection from "../components/sections/ClientsSection.astro";
+import KnowledgeSection from "../components/sections/KnowledgeSection.astro";
+
 const metadata = {
 	title: `${siteConfig.name} — Wspolnie budujemy widocznosc`,
 	description: siteConfig.description,
 	ignoreTitleTemplate: true,
 };
+
+const experts = [
+	{
+		name: "Wojciech Smolarek",
+		role: "SEO Strategy",
+		description: "Specjalista od technicznego SEO i widocznosci w Google. Buduje strategie, ktore przekladaja sie na realne leady.",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDtGtERSb6_i38gc2jpUG6w0msLfLxgDvRuEuFzmDac-D-42pTExswW-IfMGNz86x_4mjECN7iGIxi4DMnrXXupB4fIvfPvPyXw4q-hRSD1GnParMJCKt2Btr3ywBIaODMZJdDd110rgqePoL9_EJUOmkSFV-Ux-wph_P5Fg9HAxvMY2GKJg-d_3gY3SmFrcHr0e_QMOqPNr-19wWJWHTHO-mY-7k4OqccD7OeT_cOnxvUK0xVtZapzqeY5AILecCs4u8l5TWzpTp8k",
+	},
+	{
+		name: "Piotr Firyn",
+		role: "Web Development",
+		description: "Architekt systemow i deweloper. Tworzy szybkie, skalowalne strony internetowe z naciskiem na wydajnosc.",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7PIrwND8V5Jttzd_qyhhV7OmTrx42uSDo0yxgUGXcsVv28GMuuhkAz-Bs8EW_gIN-aGDsBjA53LMmDs4x5APmLJDA4lC_JrwBYTtmgSKD6GpjAI5Bxa7LJMH_232M8WqAt7ys_X45rW6hZaK37gfbY0UFG3jQMM8haZ48iwe2D7rhyPnbF8U3y9mAdFWq53vg4btCvLyRUYSC-LC8VfNVTqQAk4cOhnG1lkVViWp19TDuvsikYZlst_MFqUFXVeFgsu0VvYioz8Zx",
+	},
+	{
+		name: "Jakub Witkowski",
+		role: "UX & Operations",
+		description: "Laczy kropki miedzy marketingiem a sprzedaza. Dba o to, by ruch na stronie konwertowal.",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCgVNzbl2D_BXCc1WDVe_yzBRVOXR_UMRXT3XHr72YI8mVGo3-NfnkIuZVw6TRQwEgVIJfGAE9FeihyRHnm-Wnfd93m5sHVdc7BLyNVTYMdcKXaGI4VUgLcWrUW9GbTO3DL4D7IcGHXZ_t4cORIiAKLpiur2BwXhvfaJND03qoCncJ_ETd5FVgM9E5TTtJPUjBPjEXIoYnVY3w_blJjAyf5-gsF2DFgcaJjetdvENbbJZTbCwa5GDmo6O5yRD92j-C_ILwG7D_ZMDsc",
+	},
+];
+
+const services = [
+	{
+		num: "01",
+		title: "Strony, ktore zarabiaja",
+		description: "Projektujemy serwisy nastawione na konwersje. UX/UI dopasowany do sciezki zakupowej klienta B2B, maksymalizujacy ilosc zapytan ofertowych.",
+		tags: ["Web Design", "Development", "UX Research"],
+	},
+	{
+		num: "02",
+		title: "SEO B2B",
+		description: "Pozycjonujemy liderow. Tworzymy dedykowane strategie widocznosci, ktore buduja autorytet domeny i przyciagaja ruch intencyjny.",
+		tags: ["Audyty SEO", "Link Building", "Optymalizacja tresci"],
+	},
+	{
+		num: "03",
+		title: "Utrzymanie WWW",
+		description: "Stale wsparcie techniczne i optymalizacja wydajnosci, by Twoja strona zawsze dzialala bez zarzutu i byla bezpieczna.",
+		tags: ["Security", "Updates", "Monitoring 24/7"],
+	},
+	{
+		num: "04",
+		title: "Nadzor nad migracjami",
+		description: "Kompleksowe zarzadzanie procesem przenoszenia serwisu. Gwarantujemy zachowanie widocznosci w wynikach wyszukiwania po wdrozeniu nowej strony.",
+		tags: ["Mapa przekierowan", "Testy", "Wdrozenie"],
+	},
+	{
+		num: "05",
+		title: "Strategia Content",
+		description: "Tworzymy plany tresci eksperckich, ktore edukuja rynek, rozwiazuja problemy klientow i buduja wizerunek lidera branzy.",
+		tags: ["Content Plan", "Copywriting", "Dystrybucja"],
+	},
+	{
+		num: "06",
+		title: "Audyty UX/UI",
+		description: "Szczegolowa analiza uzytecznosci strony. Identyfikujemy bariery w konwersji i proponujemy rozwiazania zwiekszajace sprzedaz.",
+		tags: ["Heatmaps", "User Testing", "Raportowanie"],
+	},
+];
+
+const strategyColumns = [
+	{
+		title: "Budowanie autorytetu, nie tylko zasiegu.",
+		description: 'Pozycjonowanie w sektorze B2B to nie tylko slowa kluczowe, to budowanie autorytetu. Skupiamy sie na <strong class="text-foreground font-semibold">frazach intencyjnych</strong>, ktore przyciagaja decydentow, a nie przypadkowy ruch.',
+	},
+	{
+		title: "Design wspierajacy sprzedaz.",
+		description: 'Nowoczesna strona WWW musi byc przedluzeniem Twojego dzialu sprzedazy. Projektujemy interfejsy, ktore <strong class="text-foreground font-semibold">skracaja droge</strong> od pierwszego kontaktu do zapytania ofertowego.',
+	},
+	{
+		title: "Technologia i bezpieczenstwo.",
+		description: 'Migracja serwisu czy stale utrzymanie to fundament bezpieczenstwa. Jako kolektyw specjalistow bierzemy pelna odpowiedzialnosc za <strong class="text-foreground font-semibold">technologiczna strone</strong> Twojego biznesu.',
+	},
+];
+
+const clients = [
+	"Massimo.", "Gossos", "Rathra", "VibeLabs", "Conneor", "IBMO",
+	"Business+", "Slastic", "Emcorp", "Mobolch", "Zircon", "Aether",
+];
+
+const articles = [
+	{
+		image: { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBD65BUcsuG4w32rl2lmXmn5Km90lIEoNm1ka2MPPe201PWJROVuEC72bQ3NovPiTfHq25ysNSCJ80adLQKxsxxTAnvtRKIqk1EF1wjO-FMovUmA9vpJl1no_-BIfx2-yZLOUR-5gXx5TbYKKGHEFaTjLIs-j14kpp94fhvbocL-wOjit4De3cwoSwmNp8LJOFAnBbjFvj54q0M_IbP_IbHfpMOgQUyvhptN5bIRyaavlX6GW2ll3Gex_y15JlRQ1zqVJBrWX-nOZOn", alt: "SEO Strategy" },
+		category: "Strategia",
+		title: "Strategiczne podejscie do B2B",
+		excerpt: "Dlaczego warto inwestowac w dlugoterminowe dzialania zamiast jednorazowych strzalow. Analiza przypadkow z polskiego rynku.",
+	},
+	{
+		image: { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlV6BHN27ZgNYRzJ5dkmsckAimCoMelSpjCVqh0MlMC1ky-owbHH5twgTLFcqgLyHscwq6yIZKsOKPHjIu52XUFVJ-GfZiPP6HhnOFzKeJU605Qd1ZMiwFRniqhZfrnoFq_HwTCYmCDlN4roCzPjUYF35WKD9hXb19xuua7BwFHtawxQ68EgnHrWf-dmEZdz1YjGZnyBJh2OSHeQknCnI5mI_i_frxpJ4tPpi4l_2DYSO9ybH0qnGJhD7kP9fkbT8x-DigwVO9SwnP", alt: "Ecommerce B2B" },
+		category: "E-commerce",
+		title: "Dlaczego SEO w B2B rozni sie od e-commerce",
+		excerpt: "Inna sciezka klienta, inne slowa kluczowe. Jak dostosowac sklep internetowy do sprzedazy hurtowej?",
+	},
+	{
+		image: { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7VcNiSn-TYvysPH21YpHIoGg5Egm6puLiQimV10OiHc30zaxLzA2jBkN21g72ylV8YXZx8qWQdyEBVFbUpSdhV0VXeD1_Z0mQJgkWsJEU8Lhn838GmcMOD1oXasiBtKOButAK-pkeI99Vy4WRwnWEBDIQZOnBBzRCaee_tr5WhL0-E0r9ecBPmPCIx4nU8QSJ61PMy5syGr9f2JEIhDfq4JZbWi0wuDCpC4gJL5YcBouQmn76wPHnGEiTTnPZVes3oh6-b0hr-KEH", alt: "Analytics" },
+		category: "Analityka",
+		title: "Mierzenie ROI w dzialaniach contentowych",
+		excerpt: "Jak sprawdzic, czy Twoj blog firmowy rzeczywiscie przynosi zyski? Konfiguracja GA4 dla B2B.",
+	},
+];
+
+const marqueeText = "\u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION ";
 ---
 
 <BaseLayout {metadata}>
 
-	<!-- HERO -->
-	<header class="relative min-h-screen flex flex-col justify-center pt-32 pb-20 px-6 md:px-12 lg:px-24 border-b border-border">
-		<div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
-			<div class="reveal-on-scroll">
-				<h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
-					Wspolnie budujemy <span class="italic text-muted-foreground">widocznosc</span> Twojej firmy
-				</h1>
-				<p class="text-lg md:text-xl max-w-md text-muted-foreground mb-10 leading-relaxed">
-					Kolektyw 3 ekspertow B2B: SEO, Web Development, Strategia. <br/>
-					Wojciech Smolarek, Piotr Firyn, Jakub Witkowski. Wspolnie.
-				</p>
-				<div class="flex flex-wrap gap-4">
-					<a
-						class="bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform"
-						href="#contact"
-					>
-						Porozmawiajmy
-					</a>
-					<a
-						class="border border-muted-foreground px-8 py-4 rounded-full font-medium hover:bg-muted transition"
-						href="#services"
-					>
-						Nasze projekty
-					</a>
-				</div>
-			</div>
-			<div class="relative h-[500px] lg:h-[700px] w-full reveal-on-scroll">
-				<div class="absolute inset-0 bg-muted overflow-hidden rounded-t-[10rem]">
-					<img
-						alt="B2B Collective Founders"
-						class="w-full h-full object-cover opacity-90 grayscale hover:grayscale-0 transition-all duration-700"
-						src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFbbybPfNH6l8i7ZW20gdulyIwfECJERXK2i1lWCXp5hmRVONaKuwzbOY5FoQ3VNLt4RkCGXH3vQmL4iYnLNj8p8b2ak9qM_YRKDYRh8JdRVpfwWCNxxccMhcRzxCkt00ecg2TlOUchKPmWVY3ZAV3h3F9UDV9UGXBGphWB-qFC-41tT2iwMkTus2eXYikVJjPjsfuazmgf_4FLxyAcC8ZBnlUyPw0o5kYDWslI75aI2_hKlnGFG9Xxlj5TIVrh5chBIUkXmm3ykV5"
-						loading="eager"
-					/>
-				</div>
-			</div>
-		</div>
-	</header>
+	<HeroSection
+		title='Wspolnie budujemy <span class="italic text-muted-foreground">widocznosc</span> Twojej firmy'
+		subtitle="Kolektyw 3 ekspertow B2B: SEO, Web Development, Strategia. <br/>Wojciech Smolarek, Piotr Firyn, Jakub Witkowski. Wspolnie."
+		primaryCta={{ text: "Porozmawiajmy", href: "#contact" }}
+		secondaryCta={{ text: "Nasze projekty", href: "#services" }}
+		image={{
+			src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCFbbybPfNH6l8i7ZW20gdulyIwfECJERXK2i1lWCXp5hmRVONaKuwzbOY5FoQ3VNLt4RkCGXH3vQmL4iYnLNj8p8b2ak9qM_YRKDYRh8JdRVpfwWCNxxccMhcRzxCkt00ecg2TlOUchKPmWVY3ZAV3h3F9UDV9UGXBGphWB-qFC-41tT2iwMkTus2eXYikVJjPjsfuazmgf_4FLxyAcC8ZBnlUyPw0o5kYDWslI75aI2_hKlnGFG9Xxlj5TIVrh5chBIUkXmm3ykV5",
+			alt: "B2B Collective Founders",
+		}}
+	/>
 
-	<!-- MARQUEE -->
-	<div class="bg-foreground text-background py-4 overflow-hidden border-y border-background/10">
-		<div class="whitespace-nowrap overflow-hidden">
-			<div class="inline-block animate-marquee text-sm md:text-base font-mono tracking-widest uppercase">
-				{'&bull; B2B GROWTH &bull; PARTNERSHIP &bull; EXPERTISE &bull; AMBITION &bull; B2B GROWTH &bull; PARTNERSHIP &bull; EXPERTISE &bull; AMBITION &bull; B2B GROWTH &bull; PARTNERSHIP &bull; EXPERTISE &bull; AMBITION &bull; B2B GROWTH &bull; PARTNERSHIP &bull; EXPERTISE &bull; AMBITION &bull; B2B GROWTH &bull; PARTNERSHIP &bull; EXPERTISE &bull; AMBITION &bull; B2B GROWTH &bull; PARTNERSHIP &bull; EXPERTISE &bull; AMBITION '}
-			</div>
-		</div>
-	</div>
+	<MarqueeStrip text={marqueeText} />
 
-	<!-- EKSPERCI -->
-	<section class="py-24 px-6 md:px-12 lg:px-24" id="eksperci">
-		<div class="max-w-7xl mx-auto">
-			<div class="flex justify-between items-end mb-16 reveal-on-scroll">
-				<h2 class="font-serif text-5xl md:text-6xl">Eksperci</h2>
-				<div class="hidden md:block text-right">
-					<span class="block text-sm uppercase tracking-widest text-muted-foreground">Kolektyw</span>
-					<span class="font-serif text-2xl">03 Osoby</span>
-				</div>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-				<!-- Expert 1 -->
-				<div class="group reveal-on-scroll">
-					<div class="relative overflow-hidden mb-6 bg-muted aspect-[3/4]">
-						<img
-							alt="Wojciech Smolarek"
-							class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-							src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtGtERSb6_i38gc2jpUG6w0msLfLxgDvRuEuFzmDac-D-42pTExswW-IfMGNz86x_4mjECN7iGIxi4DMnrXXupB4fIvfPvPyXw4q-hRSD1GnParMJCKt2Btr3ywBIaODMZJdDd110rgqePoL9_EJUOmkSFV-Ux-wph_P5Fg9HAxvMY2GKJg-d_3gY3SmFrcHr0e_QMOqPNr-19wWJWHTHO-mY-7k4OqccD7OeT_cOnxvUK0xVtZapzqeY5AILecCs4u8l5TWzpTp8k"
-							loading="lazy"
-						/>
-						<div class="absolute top-4 left-4 text-white font-mono text-sm opacity-60">01</div>
-					</div>
-					<h3 class="text-2xl font-serif mb-1">Wojciech Smolarek</h3>
-					<p class="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-2">SEO Strategy</p>
-					<p class="text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">Specjalista od technicznego SEO i widocznosci w Google. Buduje strategie, ktore przekladaja sie na realne leady.</p>
-				</div>
-				<!-- Expert 2 -->
-				<div class="group reveal-on-scroll">
-					<div class="relative overflow-hidden mb-6 bg-muted aspect-[3/4]">
-						<img
-							alt="Piotr Firyn"
-							class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-							src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7PIrwND8V5Jttzd_qyhhV7OmTrx42uSDo0yxgUGXcsVv28GMuuhkAz-Bs8EW_gIN-aGDsBjA53LMmDs4x5APmLJDA4lC_JrwBYTtmgSKD6GpjAI5Bxa7LJMH_232M8WqAt7ys_X45rW6hZaK37gfbY0UFG3jQMM8haZ48iwe2D7rhyPnbF8U3y9mAdFWq53vg4btCvLyRUYSC-LC8VfNVTqQAk4cOhnG1lkVViWp19TDuvsikYZlst_MFqUFXVeFgsu0VvYioz8Zx"
-							loading="lazy"
-						/>
-						<div class="absolute top-4 left-4 text-white font-mono text-sm opacity-60">02</div>
-					</div>
-					<h3 class="text-2xl font-serif mb-1">Piotr Firyn</h3>
-					<p class="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-2">Web Development</p>
-					<p class="text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">Architekt systemow i deweloper. Tworzy szybkie, skalowalne strony internetowe z naciskiem na wydajnosc.</p>
-				</div>
-				<!-- Expert 3 -->
-				<div class="group reveal-on-scroll">
-					<div class="relative overflow-hidden mb-6 bg-muted aspect-[3/4]">
-						<img
-							alt="Jakub Witkowski"
-							class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-							src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgVNzbl2D_BXCc1WDVe_yzBRVOXR_UMRXT3XHr72YI8mVGo3-NfnkIuZVw6TRQwEgVIJfGAE9FeihyRHnm-Wnfd93m5sHVdc7BLyNVTYMdcKXaGI4VUgLcWrUW9GbTO3DL4D7IcGHXZ_t4cORIiAKLpiur2BwXhvfaJND03qoCncJ_ETd5FVgM9E5TTtJPUjBPjEXIoYnVY3w_blJjAyf5-gsF2DFgcaJjetdvENbbJZTbCwa5GDmo6O5yRD92j-C_ILwG7D_ZMDsc"
-							loading="lazy"
-						/>
-						<div class="absolute top-4 left-4 text-white font-mono text-sm opacity-60">03</div>
-					</div>
-					<h3 class="text-2xl font-serif mb-1">Jakub Witkowski</h3>
-					<p class="text-sm font-bold uppercase tracking-wide text-muted-foreground mb-2">UX & Operations</p>
-					<p class="text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">Laczy kropki miedzy marketingiem a sprzedaza. Dba o to, by ruch na stronie konwertowal.</p>
-				</div>
-			</div>
-		</div>
-	</section>
+	<ExpertsSection experts={experts} />
 
-	<!-- WHY US -->
-	<section class="py-32 bg-muted px-6 md:px-12 lg:px-24 relative overflow-hidden">
-		<div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-border/40 to-transparent pointer-events-none"></div>
-		<div class="max-w-5xl mx-auto relative z-10">
-			<span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block reveal-on-scroll">Dlaczego My?</span>
-			<h2 class="font-serif text-4xl md:text-6xl lg:text-7xl leading-tight reveal-on-scroll text-pretty">
-				Bez posrednikow. <br/>
-				Bez project managerow. <br/>
-				<span class="text-muted-foreground">Bezposredni kontakt z zalozycielami.</span> <br/>
-				Glebsze zrozumienie B2B.
-			</h2>
-			<div class="mt-12 flex items-center gap-4 reveal-on-scroll">
-				<div class="w-16 h-px bg-foreground shrink-0"></div>
-				<p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
-					Eliminujemy szum komunikacyjny. Rozmawiasz bezposrednio z osobami, ktore wykonuja prace. To gwarantuje jakosc i szybkosc wdrazania zmian.
-				</p>
-			</div>
-		</div>
-	</section>
+	<WhyUsSection
+		tagline="Dlaczego My?"
+		headline="Bez posrednikow. <br/>Bez project managerow. <br/><span class='text-muted-foreground'>Bezposredni kontakt z zalozycielami.</span> <br/>Glebsze zrozumienie B2B."
+		description="Eliminujemy szum komunikacyjny. Rozmawiasz bezposrednio z osobami, ktore wykonuja prace. To gwarantuje jakosc i szybkosc wdrazania zmian."
+	/>
 
-	<!-- SERVICES -->
-	<section class="py-24 px-6 md:px-12 lg:px-24 border-b border-border" id="services">
-		<div class="max-w-7xl mx-auto">
-			<div class="mb-20 flex justify-between items-end reveal-on-scroll">
-				<h2 class="font-serif text-5xl md:text-6xl">Services</h2>
-				<a class="group flex items-center gap-2 text-sm uppercase tracking-widest hover:text-muted-foreground transition" href="#">
-					Pelna oferta
-					<span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
-				</a>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-				<article class="group border-t border-border pt-6 reveal-on-scroll">
-					<span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">01</span>
-					<h3 class="text-2xl font-bold mb-3">Strony, ktore zarabiaja</h3>
-					<p class="text-muted-foreground text-sm leading-relaxed mb-4">
-						Projektujemy serwisy nastawione na konwersje. UX/UI dopasowany do sciezki zakupowej klienta B2B, maksymalizujacy ilosc zapytan ofertowych.
-					</p>
-					<ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
-						<li>&mdash; Web Design</li>
-						<li>&mdash; Development</li>
-						<li>&mdash; UX Research</li>
-					</ul>
-				</article>
-				<article class="group border-t border-border pt-6 reveal-on-scroll">
-					<span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">02</span>
-					<h3 class="text-2xl font-bold mb-3">SEO B2B</h3>
-					<p class="text-muted-foreground text-sm leading-relaxed mb-4">
-						Pozycjonujemy liderow. Tworzymy dedykowane strategie widocznosci, ktore buduja autorytet domeny i przyciagaja ruch intencyjny.
-					</p>
-					<ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
-						<li>&mdash; Audyty SEO</li>
-						<li>&mdash; Link Building</li>
-						<li>&mdash; Optymalizacja tresci</li>
-					</ul>
-				</article>
-				<article class="group border-t border-border pt-6 reveal-on-scroll">
-					<span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">03</span>
-					<h3 class="text-2xl font-bold mb-3">Utrzymanie WWW</h3>
-					<p class="text-muted-foreground text-sm leading-relaxed mb-4">
-						Stale wsparcie techniczne i optymalizacja wydajnosci, by Twoja strona zawsze dzialala bez zarzutu i byla bezpieczna.
-					</p>
-					<ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
-						<li>&mdash; Security</li>
-						<li>&mdash; Updates</li>
-						<li>&mdash; Monitoring 24/7</li>
-					</ul>
-				</article>
-				<article class="group border-t border-border pt-6 reveal-on-scroll">
-					<span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">04</span>
-					<h3 class="text-2xl font-bold mb-3">Nadzor nad migracjami</h3>
-					<p class="text-muted-foreground text-sm leading-relaxed mb-4">
-						Kompleksowe zarzadzanie procesem przenoszenia serwisu. Gwarantujemy zachowanie widocznosci w wynikach wyszukiwania po wdrozeniu nowej strony.
-					</p>
-					<ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
-						<li>&mdash; Mapa przekierowan</li>
-						<li>&mdash; Testy</li>
-						<li>&mdash; Wdrozenie</li>
-					</ul>
-				</article>
-				<article class="group border-t border-border pt-6 reveal-on-scroll">
-					<span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">05</span>
-					<h3 class="text-2xl font-bold mb-3">Strategia Content</h3>
-					<p class="text-muted-foreground text-sm leading-relaxed mb-4">
-						Tworzymy plany tresci eksperckich, ktore edukuja rynek, rozwiazuja problemy klientow i buduja wizerunek lidera branzy.
-					</p>
-					<ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
-						<li>&mdash; Content Plan</li>
-						<li>&mdash; Copywriting</li>
-						<li>&mdash; Dystrybucja</li>
-					</ul>
-				</article>
-				<article class="group border-t border-border pt-6 reveal-on-scroll">
-					<span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">06</span>
-					<h3 class="text-2xl font-bold mb-3">Audyty UX/UI</h3>
-					<p class="text-muted-foreground text-sm leading-relaxed mb-4">
-						Szczegolowa analiza uzytecznosci strony. Identyfikujemy bariery w konwersji i proponujemy rozwiazania zwiekszajace sprzedaz.
-					</p>
-					<ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
-						<li>&mdash; Heatmaps</li>
-						<li>&mdash; User Testing</li>
-						<li>&mdash; Raportowanie</li>
-					</ul>
-				</article>
-			</div>
-			<div class="mt-20 text-center reveal-on-scroll">
-				<a class="inline-block border-b border-foreground pb-1 text-lg hover:opacity-70 transition" href="#contact">Dowiedz sie wiecej o procesie</a>
-			</div>
-		</div>
-	</section>
+	<ServicesSection services={services} />
 
-	<!-- STRATEGIC B2B -->
-	<section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
-		<div class="max-w-7xl mx-auto">
-			<h2 class="font-serif text-5xl md:text-7xl mb-16 text-center reveal-on-scroll text-balance">Strategiczne podejscie do B2B</h2>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-lg leading-relaxed text-muted-foreground">
-				<div class="reveal-on-scroll">
-					<p class="mb-6 font-medium text-foreground text-xl">
-						Budowanie autorytetu, nie tylko zasiegu.
-					</p>
-					<p>
-						Pozycjonowanie w sektorze B2B to nie tylko slowa kluczowe, to budowanie autorytetu. Skupiamy sie na <strong class="text-foreground font-semibold">frazach intencyjnych</strong>, ktore przyciagaja decydentow, a nie przypadkowy ruch.
-					</p>
-				</div>
-				<div class="reveal-on-scroll">
-					<p class="mb-6 font-medium text-foreground text-xl">
-						Design wspierajacy sprzedaz.
-					</p>
-					<p>
-						Nowoczesna strona WWW musi byc przedluzeniem Twojego dzialu sprzedazy. Projektujemy interfejsy, ktore <strong class="text-foreground font-semibold">skracaja droge</strong> od pierwszego kontaktu do zapytania ofertowego.
-					</p>
-				</div>
-				<div class="reveal-on-scroll">
-					<p class="mb-6 font-medium text-foreground text-xl">
-						Technologia i bezpieczenstwo.
-					</p>
-					<p>
-						Migracja serwisu czy stale utrzymanie to fundament bezpieczenstwa. Jako kolektyw specjalistow bierzemy pelna odpowiedzialnosc za <strong class="text-foreground font-semibold">technologiczna strone</strong> Twojego biznesu.
-					</p>
-				</div>
-			</div>
-			<div class="mt-16 w-full h-px bg-border reveal-on-scroll"></div>
-		</div>
-	</section>
+	<StrategySection
+		headline="Strategiczne podejscie do B2B"
+		columns={strategyColumns}
+	/>
 
-	<!-- CLIENTS -->
-	<section class="py-24 px-6 md:px-12 lg:px-24 bg-background">
-		<div class="max-w-7xl mx-auto text-center">
-			<span class="text-sm uppercase tracking-widest text-muted-foreground mb-12 block">Nasi Klienci</span>
-			<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12 opacity-60 grayscale">
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Massimo.</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Gossos</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Rathra</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">VibeLabs</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Conneor</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">IBMO</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Business+</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Slastic</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Emcorp</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Mobolch</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Zircon</div>
-				<div class="h-12 flex items-center justify-center font-serif text-2xl font-bold">Aether</div>
-			</div>
-		</div>
-	</section>
+	<ClientsSection clients={clients} />
 
-	<!-- BAZA WIEDZY -->
-	<section class="py-32 px-6 md:px-12 lg:px-24 bg-muted" id="knowledge">
-		<div class="max-w-7xl mx-auto">
-			<div class="flex justify-between items-center mb-16 reveal-on-scroll">
-				<h2 class="font-serif text-4xl md:text-5xl">Baza Wiedzy</h2>
-				<a class="hidden md:block text-sm uppercase tracking-widest hover:underline" href="#">{'Zobacz wszystkie \u2192'}</a>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				<article class="group cursor-pointer reveal-on-scroll">
-					<div class="overflow-hidden mb-6 bg-border aspect-video relative">
-						<img
-							alt="SEO Strategy"
-							class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-							src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD65BUcsuG4w32rl2lmXmn5Km90lIEoNm1ka2MPPe201PWJROVuEC72bQ3NovPiTfHq25ysNSCJ80adLQKxsxxTAnvtRKIqk1EF1wjO-FMovUmA9vpJl1no_-BIfx2-yZLOUR-5gXx5TbYKKGHEFaTjLIs-j14kpp94fhvbocL-wOjit4De3cwoSwmNp8LJOFAnBbjFvj54q0M_IbP_IbHfpMOgQUyvhptN5bIRyaavlX6GW2ll3Gex_y15JlRQ1zqVJBrWX-nOZOn"
-							loading="lazy"
-						/>
-						<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-					</div>
-					<span class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Strategia</span>
-					<h3 class="text-2xl font-serif leading-tight mb-3 group-hover:underline decoration-1 underline-offset-4">Strategiczne podejscie do B2B</h3>
-					<p class="text-sm text-muted-foreground line-clamp-3">
-						Dlaczego warto inwestowac w dlugoterminowe dzialania zamiast jednorazowych strzalow. Analiza przypadkow z polskiego rynku.
-					</p>
-				</article>
-				<article class="group cursor-pointer reveal-on-scroll">
-					<div class="overflow-hidden mb-6 bg-border aspect-video relative">
-						<img
-							alt="Ecommerce B2B"
-							class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-							src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlV6BHN27ZgNYRzJ5dkmsckAimCoMelSpjCVqh0MlMC1ky-owbHH5twgTLFcqgLyHscwq6yIZKsOKPHjIu52XUFVJ-GfZiPP6HhnOFzKeJU605Qd1ZMiwFRniqhZfrnoFq_HwTCYmCDlN4roCzPjUYF35WKD9hXb19xuua7BwFHtawxQ68EgnHrWf-dmEZdz1YjGZnyBJh2OSHeQknCnI5mI_i_frxpJ4tPpi4l_2DYSO9ybH0qnGJhD7kP9fkbT8x-DigwVO9SwnP"
-							loading="lazy"
-						/>
-						<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-					</div>
-					<span class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 block">E-commerce</span>
-					<h3 class="text-2xl font-serif leading-tight mb-3 group-hover:underline decoration-1 underline-offset-4">Dlaczego SEO w B2B rozni sie od e-commerce</h3>
-					<p class="text-sm text-muted-foreground line-clamp-3">
-						Inna sciezka klienta, inne slowa kluczowe. Jak dostosowac sklep internetowy do sprzedazy hurtowej?
-					</p>
-				</article>
-				<article class="group cursor-pointer reveal-on-scroll">
-					<div class="overflow-hidden mb-6 bg-border aspect-video relative">
-						<img
-							alt="Analytics"
-							class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-							src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7VcNiSn-TYvysPH21YpHIoGg5Egm6puLiQimV10OiHc30zaxLzA2jBkN21g72ylV8YXZx8qWQdyEBVFbUpSdhV0VXeD1_Z0mQJgkWsJEU8Lhn838GmcMOD1oXasiBtKOButAK-pkeI99Vy4WRwnWEBDIQZOnBBzRCaee_tr5WhL0-E0r9ecBPmPCIx4nU8QSJ61PMy5syGr9f2JEIhDfq4JZbWi0wuDCpC4gJL5YcBouQmn76wPHnGEiTTnPZVes3oh6-b0hr-KEH"
-							loading="lazy"
-						/>
-						<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-					</div>
-					<span class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Analityka</span>
-					<h3 class="text-2xl font-serif leading-tight mb-3 group-hover:underline decoration-1 underline-offset-4">Mierzenie ROI w dzialaniach contentowych</h3>
-					<p class="text-sm text-muted-foreground line-clamp-3">
-						Jak sprawdzic, czy Twoj blog firmowy rzeczywiscie przynosi zyski? Konfiguracja GA4 dla B2B.
-					</p>
-				</article>
-			</div>
-		</div>
-	</section>
+	<KnowledgeSection articles={articles} />
 
 </BaseLayout>
