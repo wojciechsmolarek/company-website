@@ -1,7 +1,26 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/instrumentserif/v4/jizBRFtNs2ka5fXjeivQ4LroWlx-2zIZhOcg.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/instrumentserif/v4/jizHRFtNs2ka5fXjeivQ4LroWlx-6zASBOcg.woff2') format('woff2');
+}
+
 @theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -9,29 +28,37 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+
+  --animate-marquee: marquee 30s linear infinite;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --primary: #0254d8;
-  --border: #e5e7eb;
-  --muted: #f4f4f5;
-  --muted-foreground: #52525b;
-  --card: #ffffff;
+  --background: #F9F9F9;
+  --foreground: #111111;
+  --primary: #111111;
+  --border: #E5E5E5;
+  --muted: #F0F0F0;
+  --muted-foreground: #666666;
+  --card: #FFFFFF;
+  --surface: #FFFFFF;
+  --accent: #555555;
 }
 
 :root[data-theme="dark"] {
-  --background: #030303;
-  --foreground: #e5e7eb;
-  --primary: #8bbcff;
+  --background: #0A0A0A;
+  --foreground: #EDEDED;
+  --primary: #FFFFFF;
   --border: #262626;
-  --muted: #171717;
-  --muted-foreground: #a1a1aa;
-  --card: #0a0a0a;
+  --muted: #1A1A1A;
+  --muted-foreground: #999999;
+  --card: #111111;
+  --surface: #1A1A1A;
+  --accent: #AAAAAA;
 }
 
-/* Base styles using variables */
+/* Base styles */
 @layer base {
   body {
     background-color: var(--background);
@@ -42,4 +69,35 @@
     outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Scroll reveal animation */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0F0F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #111;
 }

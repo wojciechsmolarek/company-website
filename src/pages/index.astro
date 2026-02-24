@@ -1,134 +1,158 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../config/site";
-import Hero from "../components/widgets/Hero.astro";
-import Features from "../components/widgets/Features.astro";
-import devImg from "../assets/images/dev_balanced.png";
-import openSourceImg from "../assets/images/open-source.png";
-import Content2 from "../components/widgets/Content2.astro";
+
+import HeroSection from "../components/sections/HeroSection.astro";
+import MarqueeStrip from "../components/sections/MarqueeStrip.astro";
+import ExpertsSection from "../components/sections/ExpertsSection.astro";
+import WhyUsSection from "../components/sections/WhyUsSection.astro";
+import ServicesSection from "../components/sections/ServicesSection.astro";
+import StrategySection from "../components/sections/StrategySection.astro";
+import ClientsSection from "../components/sections/ClientsSection.astro";
+import KnowledgeSection from "../components/sections/KnowledgeSection.astro";
+
 const metadata = {
-	title: `${siteConfig.name} — The next step for your project`,
-	description:
-		"A modern and professional template for your web projects with Astro and Tailwind CSS. Boost your development with a solid foundation.",
+	title: `${siteConfig.name} — Wspolnie budujemy widocznosc`,
+	description: siteConfig.description,
 	ignoreTitleTemplate: true,
 };
+
+const experts = [
+	{
+		name: "Wojciech Smolarek",
+		role: "SEO Strategy",
+		description: "Specjalista od technicznego SEO i widocznosci w Google. Buduje strategie, ktore przekladaja sie na realne leady.",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDtGtERSb6_i38gc2jpUG6w0msLfLxgDvRuEuFzmDac-D-42pTExswW-IfMGNz86x_4mjECN7iGIxi4DMnrXXupB4fIvfPvPyXw4q-hRSD1GnParMJCKt2Btr3ywBIaODMZJdDd110rgqePoL9_EJUOmkSFV-Ux-wph_P5Fg9HAxvMY2GKJg-d_3gY3SmFrcHr0e_QMOqPNr-19wWJWHTHO-mY-7k4OqccD7OeT_cOnxvUK0xVtZapzqeY5AILecCs4u8l5TWzpTp8k",
+	},
+	{
+		name: "Piotr Firyn",
+		role: "Web Development",
+		description: "Architekt systemow i deweloper. Tworzy szybkie, skalowalne strony internetowe z naciskiem na wydajnosc.",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD7PIrwND8V5Jttzd_qyhhV7OmTrx42uSDo0yxgUGXcsVv28GMuuhkAz-Bs8EW_gIN-aGDsBjA53LMmDs4x5APmLJDA4lC_JrwBYTtmgSKD6GpjAI5Bxa7LJMH_232M8WqAt7ys_X45rW6hZaK37gfbY0UFG3jQMM8haZ48iwe2D7rhyPnbF8U3y9mAdFWq53vg4btCvLyRUYSC-LC8VfNVTqQAk4cOhnG1lkVViWp19TDuvsikYZlst_MFqUFXVeFgsu0VvYioz8Zx",
+	},
+	{
+		name: "Jakub Witkowski",
+		role: "UX & Operations",
+		description: "Laczy kropki miedzy marketingiem a sprzedaza. Dba o to, by ruch na stronie konwertowal.",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCgVNzbl2D_BXCc1WDVe_yzBRVOXR_UMRXT3XHr72YI8mVGo3-NfnkIuZVw6TRQwEgVIJfGAE9FeihyRHnm-Wnfd93m5sHVdc7BLyNVTYMdcKXaGI4VUgLcWrUW9GbTO3DL4D7IcGHXZ_t4cORIiAKLpiur2BwXhvfaJND03qoCncJ_ETd5FVgM9E5TTtJPUjBPjEXIoYnVY3w_blJjAyf5-gsF2DFgcaJjetdvENbbJZTbCwa5GDmo6O5yRD92j-C_ILwG7D_ZMDsc",
+	},
+];
+
+const services = [
+	{
+		num: "01",
+		title: "Strony, ktore zarabiaja",
+		description: "Projektujemy serwisy nastawione na konwersje. UX/UI dopasowany do sciezki zakupowej klienta B2B, maksymalizujacy ilosc zapytan ofertowych.",
+		tags: ["Web Design", "Development", "UX Research"],
+	},
+	{
+		num: "02",
+		title: "SEO B2B",
+		description: "Pozycjonujemy liderow. Tworzymy dedykowane strategie widocznosci, ktore buduja autorytet domeny i przyciagaja ruch intencyjny.",
+		tags: ["Audyty SEO", "Link Building", "Optymalizacja tresci"],
+	},
+	{
+		num: "03",
+		title: "Utrzymanie WWW",
+		description: "Stale wsparcie techniczne i optymalizacja wydajnosci, by Twoja strona zawsze dzialala bez zarzutu i byla bezpieczna.",
+		tags: ["Security", "Updates", "Monitoring 24/7"],
+	},
+	{
+		num: "04",
+		title: "Nadzor nad migracjami",
+		description: "Kompleksowe zarzadzanie procesem przenoszenia serwisu. Gwarantujemy zachowanie widocznosci w wynikach wyszukiwania po wdrozeniu nowej strony.",
+		tags: ["Mapa przekierowan", "Testy", "Wdrozenie"],
+	},
+	{
+		num: "05",
+		title: "Strategia Content",
+		description: "Tworzymy plany tresci eksperckich, ktore edukuja rynek, rozwiazuja problemy klientow i buduja wizerunek lidera branzy.",
+		tags: ["Content Plan", "Copywriting", "Dystrybucja"],
+	},
+	{
+		num: "06",
+		title: "Audyty UX/UI",
+		description: "Szczegolowa analiza uzytecznosci strony. Identyfikujemy bariery w konwersji i proponujemy rozwiazania zwiekszajace sprzedaz.",
+		tags: ["Heatmaps", "User Testing", "Raportowanie"],
+	},
+];
+
+const strategyColumns = [
+	{
+		title: "Budowanie autorytetu, nie tylko zasiegu.",
+		description: 'Pozycjonowanie w sektorze B2B to nie tylko slowa kluczowe, to budowanie autorytetu. Skupiamy sie na <strong class="text-foreground font-semibold">frazach intencyjnych</strong>, ktore przyciagaja decydentow, a nie przypadkowy ruch.',
+	},
+	{
+		title: "Design wspierajacy sprzedaz.",
+		description: 'Nowoczesna strona WWW musi byc przedluzeniem Twojego dzialu sprzedazy. Projektujemy interfejsy, ktore <strong class="text-foreground font-semibold">skracaja droge</strong> od pierwszego kontaktu do zapytania ofertowego.',
+	},
+	{
+		title: "Technologia i bezpieczenstwo.",
+		description: 'Migracja serwisu czy stale utrzymanie to fundament bezpieczenstwa. Jako kolektyw specjalistow bierzemy pelna odpowiedzialnosc za <strong class="text-foreground font-semibold">technologiczna strone</strong> Twojego biznesu.',
+	},
+];
+
+const clients = [
+	"Massimo.", "Gossos", "Rathra", "VibeLabs", "Conneor", "IBMO",
+	"Business+", "Slastic", "Emcorp", "Mobolch", "Zircon", "Aether",
+];
+
+const articles = [
+	{
+		image: { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBD65BUcsuG4w32rl2lmXmn5Km90lIEoNm1ka2MPPe201PWJROVuEC72bQ3NovPiTfHq25ysNSCJ80adLQKxsxxTAnvtRKIqk1EF1wjO-FMovUmA9vpJl1no_-BIfx2-yZLOUR-5gXx5TbYKKGHEFaTjLIs-j14kpp94fhvbocL-wOjit4De3cwoSwmNp8LJOFAnBbjFvj54q0M_IbP_IbHfpMOgQUyvhptN5bIRyaavlX6GW2ll3Gex_y15JlRQ1zqVJBrWX-nOZOn", alt: "SEO Strategy" },
+		category: "Strategia",
+		title: "Strategiczne podejscie do B2B",
+		excerpt: "Dlaczego warto inwestowac w dlugoterminowe dzialania zamiast jednorazowych strzalow. Analiza przypadkow z polskiego rynku.",
+	},
+	{
+		image: { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlV6BHN27ZgNYRzJ5dkmsckAimCoMelSpjCVqh0MlMC1ky-owbHH5twgTLFcqgLyHscwq6yIZKsOKPHjIu52XUFVJ-GfZiPP6HhnOFzKeJU605Qd1ZMiwFRniqhZfrnoFq_HwTCYmCDlN4roCzPjUYF35WKD9hXb19xuua7BwFHtawxQ68EgnHrWf-dmEZdz1YjGZnyBJh2OSHeQknCnI5mI_i_frxpJ4tPpi4l_2DYSO9ybH0qnGJhD7kP9fkbT8x-DigwVO9SwnP", alt: "Ecommerce B2B" },
+		category: "E-commerce",
+		title: "Dlaczego SEO w B2B rozni sie od e-commerce",
+		excerpt: "Inna sciezka klienta, inne slowa kluczowe. Jak dostosowac sklep internetowy do sprzedazy hurtowej?",
+	},
+	{
+		image: { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7VcNiSn-TYvysPH21YpHIoGg5Egm6puLiQimV10OiHc30zaxLzA2jBkN21g72ylV8YXZx8qWQdyEBVFbUpSdhV0VXeD1_Z0mQJgkWsJEU8Lhn838GmcMOD1oXasiBtKOButAK-pkeI99Vy4WRwnWEBDIQZOnBBzRCaee_tr5WhL0-E0r9ecBPmPCIx4nU8QSJ61PMy5syGr9f2JEIhDfq4JZbWi0wuDCpC4gJL5YcBouQmn76wPHnGEiTTnPZVes3oh6-b0hr-KEH", alt: "Analytics" },
+		category: "Analityka",
+		title: "Mierzenie ROI w dzialaniach contentowych",
+		excerpt: "Jak sprawdzic, czy Twoj blog firmowy rzeczywiscie przynosi zyski? Konfiguracja GA4 dla B2B.",
+	},
+];
+
+const marqueeText = "\u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION \u2022 B2B GROWTH \u2022 PARTNERSHIP \u2022 EXPERTISE \u2022 AMBITION ";
 ---
 
 <BaseLayout {metadata}>
-	<Hero
-		title={`Starter Template for <br class="hidden md:block" /> <span class="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Web Developers</span>`}
-		tagline="Astro v5 + Tailwind v4"
-		description={`${siteConfig.description}`}
-		actions={[
-			{
-				text: "Get Started",
-				href: "https://github.com/devgelo-labs/astro-starter-pro",
-				variant: "primary",
-				icon: "lucide:github",
-			},
-			{
-				text: "Our Services",
-				href: "/services",
-				variant: "secondary",
-				icon: "lucide:arrow-right",
-				ariaLabel: "Learn more about our services",
-			},
-		]}
+
+	<HeroSection
+		title='Wspolnie budujemy <span class="italic text-muted-foreground">widocznosc</span> Twojej firmy'
+		subtitle="Kolektyw 3 ekspertow B2B: SEO, Web Development, Strategia. <br/>Wojciech Smolarek, Piotr Firyn, Jakub Witkowski. Wspolnie."
+		primaryCta={{ text: "Porozmawiajmy", href: "#contact" }}
+		secondaryCta={{ text: "Nasze projekty", href: "#services" }}
+		image={{
+			src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCFbbybPfNH6l8i7ZW20gdulyIwfECJERXK2i1lWCXp5hmRVONaKuwzbOY5FoQ3VNLt4RkCGXH3vQmL4iYnLNj8p8b2ak9qM_YRKDYRh8JdRVpfwWCNxxccMhcRzxCkt00ecg2TlOUchKPmWVY3ZAV3h3F9UDV9UGXBGphWB-qFC-41tT2iwMkTus2eXYikVJjPjsfuazmgf_4FLxyAcC8ZBnlUyPw0o5kYDWslI75aI2_hKlnGFG9Xxlj5TIVrh5chBIUkXmm3ykV5",
+			alt: "B2B Collective Founders",
+		}}
 	/>
-	<Features
-		tagline="Features"
-		title="What's Included"
-		subtitle="A selection of tools and configurations to streamline your workflow."
-		features={[
-			{
-				title: "Optimized SEO",
-				description:
-					"Base configuration for Meta tags, Open Graph, and Sitemap generation.",
-				icon: "lucide:scan-search",
-				iconClass: "bg-blue-500/10 text-blue-400",
-			},
-			{
-				title: "High Performance",
-				description: "Lightweight structure for fast load times.",
-				icon: "lucide:zap",
-				iconClass: "bg-purple-500/10 text-purple-400",
-			},
-			{
-				title: "Tailwind v4",
-				description:
-					"Integrated configuration with the latest version of Tailwind CSS.",
-				icon: "lucide:palette",
-				iconClass: "bg-pink-500/10 text-pink-400",
-			},
-		]}
+
+	<MarqueeStrip text={marqueeText} />
+
+	<ExpertsSection experts={experts} />
+
+	<WhyUsSection
+		tagline="Dlaczego My?"
+		headline="Bez posrednikow. <br/>Bez project managerow. <br/><span class='text-muted-foreground'>Bezposredni kontakt z zalozycielami.</span> <br/>Glebsze zrozumienie B2B."
+		description="Eliminujemy szum komunikacyjny. Rozmawiasz bezposrednio z osobami, ktore wykonuja prace. To gwarantuje jakosc i szybkosc wdrazania zmian."
 	/>
-	<Content2
-		items={[
-			{
-				title: "Responsive Design",
-				description:
-					"Base configuration for Meta tags, Open Graph, and Sitemap generation.",
-				icon: "lucide:scan-search",
-				iconClass: "bg-blue-500/10 text-blue-400",
-			},
-			{
-				title: "High Performance",
-				description: "Lightweight structure for fast load times.",
-				icon: "lucide:zap",
-				iconClass: "bg-purple-500/10 text-purple-400",
-			},
-			{
-				title: "Tailwind v4",
-				description:
-					"Integrated configuration with the latest version of Tailwind CSS.",
-				icon: "lucide:palette",
-				iconClass: "bg-pink-500/10 text-pink-400",
-			},
-		]}
-		image={devImg}
-		imageAlt="Development"
-	>
-		<Fragment>
-			<h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
-				Development
-			</h3>
-			We provide a solid foundation to start your projects with best practices.
-		</Fragment>
-	</Content2>
-	<Content2
-		items={[
-			{
-				title: "Open Source",
-				description:
-					"Developed under the MIT license, free for personal and commercial use.",
-				icon: "lucide:github",
-				iconClass: "bg-indigo-500/10 text-indigo-400",
-			},
-			{
-				title: "Community Driven",
-				description:
-					"Built with the feedback and contributions of the developer community.",
-				icon: "lucide:users",
-				iconClass: "bg-orange-500/10 text-orange-400",
-			},
-			{
-				title: "Regular Updates",
-				description:
-					"Continuously improved with the latest technologies and best practices.",
-				icon: "lucide:refresh-cw",
-				iconClass: "bg-teal-500/10 text-teal-400",
-			},
-		]}
-		image={openSourceImg}
-		imageAlt="Community and Open Source"
-		isReversed={true}
-	>
-		<Fragment>
-			<h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
-				Open Source & Community
-			</h3>
-			Join the revolution of modern web development. This project is open for
-			everyone to use, learn from, and contribute to.
-		</Fragment>
-	</Content2>
+
+	<ServicesSection services={services} />
+
+	<StrategySection
+		headline="Strategiczne podejscie do B2B"
+		columns={strategyColumns}
+	/>
+
+	<ClientsSection clients={clients} />
+
+	<KnowledgeSection articles={articles} />
+
 </BaseLayout>

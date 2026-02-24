@@ -1,130 +1,80 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ServiceList from "../components/widgets/ServiceList.astro";
-import Content from "../components/widgets/Content.astro";
-import Content2 from "../components/widgets/Content2.astro";
-import webDevImg from "../assets/images/services/web-dev.webp";
-import seoImg from "../assets/images/services/seo.webp";
-import consultingImg from "../assets/images/services/consulting.webp";
+
+const metadata = {
+    title: "Uslugi",
+    description: "Kompleksowe uslugi SEO, Web Development i Strategii dla firm B2B.",
+};
 
 const services = [
     {
-        title: "Web Development",
-        description: "Static and dynamic sites built for the modern era.",
-        icon: "lucide:globe",
+        num: "01",
+        title: "Strony, ktore zarabiaja",
+        description: "Projektujemy serwisy nastawione na konwersje. UX/UI dopasowany do sciezki zakupowej klienta B2B.",
+        tags: ["Web Design", "Development", "UX Research"],
     },
     {
-        title: "SEO Optimization",
-        description: "We ensure your content is found by those looking for it.",
-        icon: "lucide:search",
+        num: "02",
+        title: "SEO B2B",
+        description: "Pozycjonujemy liderow. Tworzymy dedykowane strategie widocznosci, ktore buduja autorytet domeny.",
+        tags: ["Audyty SEO", "Link Building", "Optymalizacja tresci"],
     },
     {
-        title: "IT Consulting",
-        description:
-            "Technical advice to scale your projects to the next level.",
-        icon: "lucide:rocket",
+        num: "03",
+        title: "Utrzymanie WWW",
+        description: "Stale wsparcie techniczne i optymalizacja wydajnosci, by Twoja strona zawsze dzialala bez zarzutu.",
+        tags: ["Security", "Updates", "Monitoring 24/7"],
+    },
+    {
+        num: "04",
+        title: "Nadzor nad migracjami",
+        description: "Kompleksowe zarzadzanie procesem przenoszenia serwisu z zachowaniem widocznosci.",
+        tags: ["Mapa przekierowan", "Testy", "Wdrozenie"],
+    },
+    {
+        num: "05",
+        title: "Strategia Content",
+        description: "Tworzymy plany tresci eksperckich, ktore edukuja rynek i buduja wizerunek lidera.",
+        tags: ["Content Plan", "Copywriting", "Dystrybucja"],
+    },
+    {
+        num: "06",
+        title: "Audyty UX/UI",
+        description: "Szczegolowa analiza uzytecznosci strony. Identyfikujemy bariery w konwersji.",
+        tags: ["Heatmaps", "User Testing", "Raportowanie"],
     },
 ];
-const metadata = {
-    title: "Services",
-    description:
-        "Discover our web development, SEO optimization, and technology consulting services.",
-};
 ---
 
 <BaseLayout {metadata}>
-    <Content
-        tagline="Services"
-        title="Our Services"
-        description={[
-            "Comprehensive solutions designed to maximize the potential of your digital presence.",
-        ]}
-    />
-    <ServiceList services={services} classes={{ container: "pt-0 md:pt-0" }} />
-    <Content
-        tagline="Web Development"
-        title="Modern Web Development"
-        description={[
-            "We specialize in building fast, secure, and scalable websites using the latest technologies. We transform your vision into an impactful digital experience.",
-        ]}
-        classes={{ container: "pb-0 md:pb-0" }}
-    />
-    <Content2
-        items={[
-            {
-                title: "Responsive Design",
-                description:
-                    "Your site will look perfect on any device, from mobiles to desktop screens.",
-            },
-            {
-                title: "Optimized Performance",
-                description:
-                    "Fast loading to improve user experience and SEO positioning.",
-            },
-        ]}
-        image={webDevImg}
-        imageAlt="Modern Web Development"
-        classes={{ container: "pt-0 md:pt-0" }}
-    >
-        <Fragment>
-            <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
-                Modern Web Development
-            </h3>
-            We specialize in building fast, secure, and scalable websites using the
-            latest technologies. We transform your vision into an impactful digital
-            experience.
-        </Fragment>
-    </Content2>
-
-    <Content2
-        isReversed={true}
-        items={[
-            {
-                title: "SEO Audit",
-                description:
-                    "We deeply analyze your website to identify technical and content improvement opportunities.",
-            },
-            {
-                title: "Content Strategy",
-                description:
-                    "We create relevant content plans that attract and retain your target audience.",
-            },
-        ]}
-        image={seoImg}
-        imageAlt="SEO Strategies"
-    >
-        <Fragment>
-            <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
-                SEO Optimization
-            </h3>
-            We help your business get found by the right people. Our organic positioning
-            strategies are designed to improve your organic visibility.
-        </Fragment>
-    </Content2>
-
-    <Content2
-        items={[
-            {
-                title: "Digital Transformation",
-                description:
-                    "We guide you in adopting new technologies to optimize your business processes.",
-            },
-            {
-                title: "Software Architecture",
-                description:
-                    "We design robust and scalable systems prepared for future growth.",
-            },
-        ]}
-        image={consultingImg}
-        imageAlt="Technology Consulting"
-    >
-        <Fragment>
-            <h3 class="text-2xl font-bold tracking-tight sm:text-3xl mb-2">
-                Technology Consulting
-            </h3>
-            We accompany you in critical decision-making. We evaluate your current
-            infrastructure and design personalized roadmaps to take your company to
-            the next technological level.
-        </Fragment>
-    </Content2>
+    <section class="pt-40 pb-24 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Uslugi</span>
+                <h1 class="font-serif text-5xl md:text-7xl leading-tight text-balance">
+                    Kompleksowe rozwiazania <br/>
+                    <span class="text-muted-foreground italic">dla sektora B2B</span>
+                </h1>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                {services.map((service) => (
+                    <article class="group border-t border-border pt-6 reveal-on-scroll">
+                        <span class="block text-4xl font-serif text-border mb-4 group-hover:text-foreground transition-colors duration-500">{service.num}</span>
+                        <h2 class="text-2xl font-bold mb-3">{service.title}</h2>
+                        <p class="text-muted-foreground text-sm leading-relaxed mb-4">{service.description}</p>
+                        <ul class="text-xs text-muted-foreground/70 flex flex-col gap-1 uppercase tracking-wide">
+                            {service.tags.map((tag) => (
+                                <li>&mdash; {tag}</li>
+                            ))}
+                        </ul>
+                    </article>
+                ))}
+            </div>
+            <div class="mt-20 text-center reveal-on-scroll">
+                <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
+                    Porozmawiajmy o Twoim projekcie
+                </a>
+            </div>
+        </div>
+    </section>
 </BaseLayout>

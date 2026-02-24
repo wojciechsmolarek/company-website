@@ -5,7 +5,12 @@ import icon from "astro-icon";
 import remarkReadingTime from "remark-reading-time";
 
 export default defineConfig({
-  site: "https://astrostarterpro.com/",
+  site: "https://b2bcollective.pl/",
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/no-op",
+    },
+  },
   integrations: [sitemap(), icon()],
   markdown: {
     remarkPlugins: [
