@@ -21,6 +21,6 @@ export async function GET(context) {
           ? `<author>${post.data.author}</author>`
           : undefined,
       })),
-    customData: `<language>${siteConfig.locale}</language>`,
+    customData: `<language>${siteConfig.lang}</language>`,
   });
 }

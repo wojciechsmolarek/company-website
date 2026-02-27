@@ -95,9 +95,9 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F0F0F0;
+  background: var(--muted);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #111;
+  background: var(--foreground);
 }
