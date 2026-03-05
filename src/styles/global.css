@@ -46,18 +46,6 @@
   --accent: #555555;
 }
 
-:root[data-theme="dark"] {
-  --background: #0A0A0A;
-  --foreground: #EDEDED;
-  --primary: #FFFFFF;
-  --border: #262626;
-  --muted: #1A1A1A;
-  --muted-foreground: #999999;
-  --card: #111111;
-  --surface: #1A1A1A;
-  --accent: #AAAAAA;
-}
-
 /* Base styles */
 @layer base {
   body {

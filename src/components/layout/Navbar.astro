@@ -3,18 +3,32 @@ import { siteConfig } from "../../config/site";
 ---
 
 <nav
-    class="fixed top-0 w-full z-50 px-6 py-5 flex justify-between items-center mix-blend-difference text-white pointer-events-none"
+    class="fixed top-0 w-full z-50 px-6 py-5 flex justify-between items-center text-black bg-white"
 >
-    <div class="pointer-events-auto">
-        <a href="/" aria-label="B2B Collective Home">
-            <svg class="text-white" fill="currentColor" height="32" viewBox="0 0 24 24" width="32" aria-hidden="true">
+    <!-- Logo -->
+    <div class="z-50">
+        <a
+            href="/"
+            aria-label="B2B Collective Home"
+            class="pointer-events-auto block"
+        >
+            <svg
+                class="text-black"
+                fill="currentColor"
+                height="32"
+                viewBox="0 0 24 24"
+                width="32"
+                aria-hidden="true"
+            >
                 <circle cx="12" cy="12" r="10"></circle>
             </svg>
         </a>
     </div>
 
     <!-- Desktop Menu -->
-    <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest font-medium pointer-events-auto">
+    <div
+        class="hidden md:flex gap-8 text-sm uppercase tracking-widest font-medium pointer-events-auto"
+    >
         {
             siteConfig.navLinks.map((link) => (
                 <a
@@ -27,36 +41,42 @@ import { siteConfig } from "../../config/site";
         }
     </div>
 
-    <div class="pointer-events-auto">
+    <!-- Hamburger / Mobile Menu Button -->
+    <div class="md:hidden flex items-center z-50">
         <button
             id="mobile-menu-button"
-            class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-200 transition text-sm"
+            class="pointer-events-auto group p-2 -mr-2 focus:outline-none"
             type="button"
             aria-controls="mobile-menu"
             aria-expanded="false"
+            aria-label="Toggle menu"
         >
-            Menu
+            <div class="w-6 h-5 flex flex-col justify-between items-end">
+                <span
+                    class="w-full h-0.5 bg-white transition-all group-[[aria-expanded='true']]:rotate-45 group-[[aria-expanded='true']]:translate-y-[9px]"
+                ></span>
+                <span
+                    class="w-4/5 h-0.5 bg-white transition-all group-[[aria-expanded='true']]:opacity-0"
+                ></span>
+                <span
+                    class="w-full h-0.5 bg-white transition-all group-[[aria-expanded='true']]:-rotate-45 group-[[aria-expanded='true']]:-translate-y-[9px]"
+                ></span>
+            </div>
         </button>
     </div>
 </nav>
 
 <!-- Mobile Full-Screen Menu -->
-<div id="mobile-menu" class="fixed inset-0 z-[60] bg-foreground text-background hidden flex-col items-center justify-center">
-    <button
-        id="mobile-menu-close"
-        class="absolute top-5 right-6 text-background hover:opacity-70 transition"
-        aria-label="Close menu"
-    >
-        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-    </button>
+<div
+    id="mobile-menu"
+    class="fixed inset-0 z-[45] bg-white text-black hidden flex-col items-center justify-center translate-x-full transition-transform duration-300"
+>
     <div class="flex flex-col items-center gap-8">
         {
             siteConfig.navLinks.map((link) => (
                 <a
                     href={link.href}
-                    class="text-3xl font-serif hover:opacity-70 transition mobile-menu-link"
+                    class="text-4xl font-serif hover:opacity-70 transition mobile-menu-link"
                 >
                     {link.text}
                 </a>
@@ -68,24 +88,45 @@ import { siteConfig } from "../../config/site";
 <script>
     const button = document.getElementById("mobile-menu-button");
     const menu = document.getElementById("mobile-menu");
-    const closeButton = document.getElementById("mobile-menu-close");
+
+    function toggleMenu() {
+        const isExpanded = button?.getAttribute("aria-expanded") === "true";
+        if (isExpanded) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
 
     function openMenu() {
         menu?.classList.remove("hidden");
-        menu?.classList.add("flex");
+        // Using a slight delay to trigger transition if we were to use one
+        requestAnimationFrame(() => {
+            menu?.classList.remove("translate-x-full");
+            menu?.classList.add("translate-x-0");
+            menu?.classList.add("flex");
+        });
         button?.setAttribute("aria-expanded", "true");
         document.body.style.overflow = "hidden";
     }
 
     function closeMenu() {
-        menu?.classList.add("hidden");
-        menu?.classList.remove("flex");
+        menu?.classList.add("translate-x-full");
+        menu?.classList.remove("translate-x-0");
+
         button?.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";
+
+        // Wait for transition to end before hiding
+        setTimeout(() => {
+            if (button?.getAttribute("aria-expanded") === "false") {
+                menu?.classList.add("hidden");
+                menu?.classList.remove("flex");
+            }
+        }, 300);
     }
 
-    button?.addEventListener("click", openMenu);
-    closeButton?.addEventListener("click", closeMenu);
+    button?.addEventListener("click", toggleMenu);
 
     document.querySelectorAll(".mobile-menu-link").forEach((link) => {
         link.addEventListener("click", closeMenu);

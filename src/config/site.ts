@@ -16,9 +16,9 @@ export const siteConfig = {
     linkedin: "https://linkedin.com",
   },
   navLinks: [
-    { text: "Eksperci", href: "/#eksperci" },
-    { text: "Uslugi", href: "/#services" },
-    { text: "Baza Wiedzy", href: "/#knowledge" },
-    { text: "Kontakt", href: "/#contact" },
+    { text: "O nas", href: "/about" },
+    { text: "Usługi", href: "/services" },
+    { text: "Baza Wiedzy", href: "/blog" },
+    { text: "Kontakt", href: "/contact" },
   ],
 };
