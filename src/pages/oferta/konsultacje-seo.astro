@@ -1,0 +1,150 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const metadata = {
+    title: "Konsultacje SEO na godziny",
+    description: "Elastyczne konsultacje SEO na godziny. Ekspert SEO do Twojej dyspozycji - bez dlugoterminowych umow, plac tylko za czas, ktorego potrzebujesz.",
+};
+
+const forWhom = [
+    {
+        title: "Zespoly marketingowe",
+        description: "Potrzebujecie eksperta, ktory zweryfikuje Wasza strategie SEO, odpowie na pytania i wskaże kierunek dzialań? Rezerwujecie godziny i korzystacie, kiedy chcecie.",
+    },
+    {
+        title: "Agencje bez SEO w ofercie",
+        description: "Realizujecie projekt webowy dla klienta, ale brakuje Wam kompetencji SEO? Dolaczamy sie jako zewnetrzny konsultant do Waszego zespolu.",
+    },
+    {
+        title: "Firmy z wlasnym SEO",
+        description: "Macie wewnetrznego specjaliste, ale potrzebujecie second opinion lub wsparcia w trudniejszych zagadnieniach technicznych? Jestesmy do dyspozycji.",
+    },
+    {
+        title: "Startupy i scale-upy",
+        description: "Nie potrzebujecie jeszcze pelnej obslugi SEO, ale chcecie miec dostep do wiedzy eksperckiej, kiedy pojawia sie konkretny problem.",
+    },
+];
+
+const howItWorks = [
+    {
+        num: "01",
+        title: "Wybierz pakiet godzin",
+        description: "Dobierz liczbe godzin do swoich potrzeb. Mozesz zaczynac od malego pakietu i skalowac w gore, kiedy potrzebujesz wiecej wsparcia.",
+    },
+    {
+        num: "02",
+        title: "Zarezerwuj termin",
+        description: "Umow sie na konsultacje w dogodnym terminie. Mozesz rezerwowac pojedyncze godziny lub bloki czasowe na wieksza sesje.",
+    },
+    {
+        num: "03",
+        title: "Korzystaj z wiedzy",
+        description: "Audyty, analizy, strategia, szkolenia - wykorzystaj godziny na to, czego najbardziej potrzebujesz. Po kazdej sesji dostajesz podsumowanie.",
+    },
+];
+
+const topics = [
+    "Audyty techniczne SEO",
+    "Strategia slow kluczowych",
+    "Analiza konkurencji",
+    "Optymalizacja tresci",
+    "Link building strategy",
+    "Migracje i redesign",
+    "Core Web Vitals",
+    "Analityka i raportowanie",
+    "SEO lokalne",
+    "Szkolenia zespolu",
+    "International SEO",
+    "E-commerce SEO",
+];
+---
+
+<BaseLayout {metadata}>
+    <!-- Hero -->
+    <section class="relative pt-40 pb-24 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Oferta</span>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
+                    Konsultacje SEO <span class="italic text-muted-foreground">"na godziny"</span>
+                </h1>
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0"></div>
+                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                        Nie zawsze potrzebujesz pelnej obslugi SEO. Czasem wystarczy godzina z ekspertem, ktory odpowie na Twoje pytania i wskaze wlasciwy kierunek.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-serif text-4xl md:text-6xl mb-16 reveal-on-scroll text-balance">Jak to dziala?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                {howItWorks.map((step) => (
+                    <div class="reveal-on-scroll">
+                        <span class="block text-6xl font-serif text-border mb-6">{step.num}</span>
+                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{step.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- For whom -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Dla kogo</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Dla kogo sa <span class="italic text-muted-foreground">konsultacje?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                {forWhom.map((item) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Tematy</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    O czym mozemy <span class="italic text-muted-foreground">porozmawiac?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 reveal-on-scroll">
+                {topics.map((topic) => (
+                    <div class="border border-border px-5 py-4 text-sm text-muted-foreground hover:text-foreground hover:border-foreground transition-colors">
+                        {topic}
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
+            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                Pierwsza godzina gratis.
+            </h2>
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+                Umow sie na bezplatna rozmowe wstepna, podczas ktorej poznamy Twoje potrzeby i zaproponujemy optymalny pakiet godzin.
+            </p>
+            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
+                Zarezerwuj konsultacje
+            </a>
+        </div>
+    </section>
+</BaseLayout>

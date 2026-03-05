@@ -24,6 +24,7 @@ export interface Service {
 export interface NavLink {
   text: string;
   href: string;
+  children?: NavLink[];
 }
 
 export interface Widget {
