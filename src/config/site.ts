@@ -17,7 +17,19 @@ export const siteConfig = {
   },
   navLinks: [
     { text: "O nas", href: "/about" },
-    { text: "Usługi", href: "/services" },
+    {
+      text: "Oferta",
+      href: "/services",
+      children: [
+        { text: "SEO Techniczne", href: "/oferta/seo-techniczne" },
+        { text: "Migracje stron i sklepow", href: "/oferta/migracje-stron" },
+        { text: "Konsultacje SEO", href: "/oferta/konsultacje-seo" },
+        { text: "SEO dla e-commerce", href: "/oferta/seo-ecommerce" },
+        { text: "SEO pre-paid", href: "/oferta/seo-pre-paid" },
+        { text: "Pozycjonowanie w AI", href: "/oferta/pozycjonowanie-ai" },
+        { text: "Strony, ktore zarabiaja", href: "/oferta/strony-ktore-zarabiaja" },
+      ],
+    },
     { text: "Baza Wiedzy", href: "/blog" },
     { text: "Kontakt", href: "/contact" },
   ],

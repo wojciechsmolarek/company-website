@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const metadata = {
+    title: "Migracje stron i sklepow internetowych",
+    description: "Bezpieczna migracja strony lub sklepu internetowego bez utraty widocznosci w Google. Pelny nadzor nad procesem przenoszenia serwisu.",
+};
+
+const processSteps = [
+    {
+        num: "01",
+        title: "Audyt przed-migracyjny",
+        description: "Inwentaryzacja wszystkich URL-i, analiza profilu linkow, mapowanie przekierowan 1:1, identyfikacja kluczowych podstron generujacych ruch organiczny.",
+    },
+    {
+        num: "02",
+        title: "Plan migracji",
+        description: "Szczegolowy plan dzialania z harmonogramem, checklistami i scenariuszami awaryjnymi. Kazdy etap jest udokumentowany i zatwierdzony.",
+    },
+    {
+        num: "03",
+        title: "Wdrozenie i monitoring",
+        description: "Nadzor nad wdrozeniem, testy przekierowan, walidacja danych strukturalnych. Po migracji - monitoring widocznosci i szybka reakcja na problemy.",
+    },
+];
+
+const risks = [
+    {
+        title: "Utrata ruchu organicznego",
+        description: "Bez prawidlowych przekierowan 301 tracisz caly autorytet zgromadzony przez lata. Jedna pomylka moze kosztowac miesiace odbudowy.",
+    },
+    {
+        title: "Zepsute linkowanie wewnetrzne",
+        description: "Nowa struktura URL bez mapy przekierowan prowadzi do bledow 404, frustracji uzytkownikow i spadku pozycji w wynikach wyszukiwania.",
+    },
+    {
+        title: "Utrata danych strukturalnych",
+        description: "Schema.org, Open Graph, meta tagi - ich brak po migracji oznacza gorsze wyswietlanie w wynikach i spadek CTR.",
+    },
+    {
+        title: "Problemy z indeksowaniem",
+        description: "Bledna konfiguracja robots.txt lub sitemap.xml na nowej stronie moze zablokowac Google przed indeksowaniem Twoich tresci.",
+    },
+];
+
+const types = [
+    {
+        title: "Zmiana domeny",
+        description: "Przeniesienie serwisu na nowa domene z zachowaniem calego autorytetu i pozycji w wynikach wyszukiwania.",
+    },
+    {
+        title: "Zmiana CMS / platformy",
+        description: "Migracja z WordPressa, Shopify, Magento lub innych platform na nowe rozwiazanie technologiczne.",
+    },
+    {
+        title: "Zmiana struktury URL",
+        description: "Reorganizacja architektury informacji i struktury linkow bez utraty dotychczasowej widocznosci.",
+    },
+    {
+        title: "Laczenie domen",
+        description: "Konsolidacja wielu serwisow pod jedna domena z prawidlowym transferem autorytetu i ruchu.",
+    },
+    {
+        title: "Migracja HTTP na HTTPS",
+        description: "Bezpieczne przejscie na protokol HTTPS z pelnym zachowaniem pozycji i uniknieciem mixed content.",
+    },
+    {
+        title: "Redesign strony",
+        description: "Nadzor SEO nad procesem redesignu, by nowy wyglad nie oznaczal nowych problemow z widocznoscia.",
+    },
+];
+---
+
+<BaseLayout {metadata}>
+    <!-- Hero -->
+    <section class="relative pt-40 pb-24 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Oferta</span>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
+                    Migracje stron <span class="italic text-muted-foreground">i sklepow</span>
+                </h1>
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0"></div>
+                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                        Zle przeprowadzona migracja to najczestszy powod katastrofalnych spadkow widocznosci. Nadzorujemy caly proces, by Twoja strona nie stracila ani jednej pozycji.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risks Section -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Ryzyka</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Dlaczego migracje <span class="italic text-muted-foreground">sa ryzykowne?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                {risks.map((risk) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{risk.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{risk.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-serif text-4xl md:text-6xl mb-16 reveal-on-scroll text-balance">Nasz proces</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                {processSteps.map((step) => (
+                    <div class="reveal-on-scroll">
+                        <span class="block text-6xl font-serif text-border mb-6">{step.num}</span>
+                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{step.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Migration Types -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Rodzaje</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Jakie migracje <span class="italic text-muted-foreground">realizujemy?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                {types.map((type) => (
+                    <article class="group border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{type.title}</h3>
+                        <p class="text-muted-foreground text-sm leading-relaxed">{type.description}</p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
+            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                Planujesz migracje?
+            </h2>
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+                Porozmawiajmy zanim zaczniesz. Prawidlowe przygotowanie to klucz do bezpiecznej migracji bez strat w widocznosci.
+            </p>
+            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
+                Skonsultuj migracje
+            </a>
+        </div>
+    </section>
+</BaseLayout>

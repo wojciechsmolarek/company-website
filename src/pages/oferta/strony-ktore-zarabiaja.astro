@@ -1,0 +1,190 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const metadata = {
+    title: "Strony, ktore zarabiaja",
+    description: "Projektujemy serwisy nastawione na konwersje. UX/UI dopasowany do sciezki zakupowej klienta B2B, maksymalizujacy zapytania ofertowe.",
+};
+
+const principles = [
+    {
+        title: "Konwersja przede wszystkim",
+        description: "Kazdy element strony sluzy jednemu celowi - przekształceniu odwiedzajacego w lead. Projektujemy sciezki uzytkownika, ktore naturalnie prowadza do zapytania ofertowego.",
+    },
+    {
+        title: "Szybkosc ladowania",
+        description: "Strona ladujaca sie w 1 sekundę konwertuje 3x lepiej niz strona ladujaca sie w 5 sekund. Optymalizujemy kazdy kilobajt.",
+    },
+    {
+        title: "Mobile-first, nie mobile-friendly",
+        description: "Ponad 60% ruchu B2B pochodzi z urzadzen mobilnych. Projektujemy od mobile w gore, nie odwrotnie.",
+    },
+    {
+        title: "SEO w DNA",
+        description: "Kazda strona jest od poczatku projektowana z mysla o widocznosci w Google. Struktura, tresci, szybkosc - SEO nie jest dodatkiem, to fundament.",
+    },
+];
+
+const processSteps = [
+    {
+        num: "01",
+        title: "Discovery i strategia",
+        description: "Analiza Twojego biznesu, konkurencji i grupy docelowej. Definiujemy cele, KPI i sciezke uzytkownika, zanim narysujemy pierwszy piksel.",
+    },
+    {
+        num: "02",
+        title: "UX Research i prototyp",
+        description: "Wireframe'y i prototypy klikalne, testowane z realnymi uzytkownikami. Walidujemy kazde zalozenie, zanim przejdziemy do designu.",
+    },
+    {
+        num: "03",
+        title: "Design i development",
+        description: "Nowoczesny design nastawiony na konwersje. Development w technologiach zapewniajacych wydajnosc: Astro, Next.js, headless CMS.",
+    },
+    {
+        num: "04",
+        title: "Testy i optymalizacja",
+        description: "Testy A/B, analityka, heatmapy. Po wdrozeniu ciągle optymalizujemy strone, by zwiekszac wskazniki konwersji.",
+    },
+];
+
+const technologies = [
+    "Astro",
+    "Next.js",
+    "React",
+    "Headless CMS",
+    "Tailwind CSS",
+    "Vercel",
+    "Cloudflare",
+    "Analytics & Tracking",
+];
+
+const deliverables = [
+    {
+        title: "Strona korporacyjna B2B",
+        description: "Profesjonalny serwis firmowy, ktory buduje zaufanie, prezentuje oferte i generuje leady. Od wizytowki po rozbudowany portal.",
+    },
+    {
+        title: "Landing page",
+        description: "Dedykowane strony docelowe pod kampanie, produkty lub uslugi. Zoptymalizowane pod jeden cel konwersji.",
+    },
+    {
+        title: "Mikrostrony produktowe",
+        description: "Samodzielne serwisy prezentujace produkt lub usluge. Idealne do kampanii i pozycjonowania na konkretne frazy.",
+    },
+    {
+        title: "Redesign istniejacego serwisu",
+        description: "Odswiezenie designu i optymalizacja UX przy zachowaniu widocznosci SEO. Nadzor nad migracja wlaczony w cene.",
+    },
+];
+---
+
+<BaseLayout {metadata}>
+    <!-- Hero -->
+    <section class="relative pt-40 pb-24 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Oferta</span>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
+                    Strony, ktore <span class="italic text-muted-foreground">zarabiaja</span>
+                </h1>
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0"></div>
+                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                        Nie budujemy stron "bo trzeba miec strone". Projektujemy serwisy, ktore sa przedluzeniem Twojego dzialu sprzedazy - generuja leady, buduja zaufanie i zamykaja deale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Filozofia</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Nasze <span class="italic text-muted-foreground">zasady projektowania</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                {principles.map((item) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-serif text-4xl md:text-6xl mb-16 reveal-on-scroll text-balance">Jak pracujemy?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                {processSteps.map((step) => (
+                    <div class="reveal-on-scroll">
+                        <span class="block text-6xl font-serif text-border mb-6">{step.num}</span>
+                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed text-sm">{step.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Co tworzymy</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Rodzaje <span class="italic text-muted-foreground">projektow</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                {deliverables.map((item) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Technologie</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Narzedzia, ktore <span class="italic text-muted-foreground">wybieramy</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal-on-scroll">
+                {technologies.map((tech) => (
+                    <div class="border border-border px-5 py-4 text-sm text-muted-foreground hover:text-foreground hover:border-foreground transition-colors">
+                        {tech}
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
+        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
+            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                Twoja strona moze sprzedawac wiecej.
+            </h2>
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+                Porozmawiajmy o tym, jak Twoja strona moze lepiej wspierac sprzedaz. Bezplatna analiza obecnego serwisu i rekomendacje zmian.
+            </p>
+            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
+                Zamow bezplatna analize
+            </a>
+        </div>
+    </section>
+</BaseLayout>

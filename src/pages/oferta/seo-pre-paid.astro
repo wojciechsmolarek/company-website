@@ -1,0 +1,167 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const metadata = {
+    title: "SEO w modelu pre-paid",
+    description: "Elastyczny model wspolpracy SEO w systemie pre-paid. Kupujesz pakiet godzin, my realizujemy zadania wedlug Twoich priorytetow.",
+};
+
+const advantages = [
+    {
+        title: "Pelna kontrola budzetu",
+        description: "Wiesz dokladnie, ile wydajesz. Kupujesz pakiet godzin z gory i decydujesz, na co je przeznaczyc. Bez ukrytych kosztow.",
+    },
+    {
+        title: "Brak dlugoterminowych umow",
+        description: "Nie wiazesz sie umowa na 12 miesiecy. Kupujesz tyle godzin, ile aktualnie potrzebujesz. Skalujesz w gore lub w dol.",
+    },
+    {
+        title: "Transparentne rozliczenie",
+        description: "Kazda godzina jest udokumentowana. Wiesz dokladnie, jakie zadania zostaly zrealizowane i ile czasu zajelyby.",
+    },
+    {
+        title: "Elastycznosc dzialan",
+        description: "Dzis potrzebujesz audytu, jutro optymalizacji tresci, za tydzien analizy konkurencji. Ty decydujesz o priorytetach.",
+    },
+];
+
+const howItDiffers = [
+    {
+        title: "Tradycyjny model agencyjny",
+        items: [
+            "Umowa na 12+ miesiecy",
+            "Staly abonament niezaleznie od pracy",
+            "Narzucony zakres dzialan",
+            "Rozliczenie za efekt (czesto nieokreslony)",
+            "Brak wgladu w realne godziny pracy",
+        ],
+        isHighlighted: false,
+    },
+    {
+        title: "Nasz model pre-paid",
+        items: [
+            "Bez umow dlugoterminowych",
+            "Placisz za realne godziny pracy",
+            "Ty decydujesz o priorytetach",
+            "Rozliczenie za czas i konkretne zadania",
+            "Pelna transparentnosc i raporty",
+        ],
+        isHighlighted: true,
+    },
+];
+
+const processSteps = [
+    {
+        num: "01",
+        title: "Wybierz pakiet",
+        description: "Dobierz liczbe godzin do skali Twojego projektu. Pakiety od 10 do 80 godzin miesiecznie z degresywna stawka.",
+    },
+    {
+        num: "02",
+        title: "Ustal priorytety",
+        description: "Wspolnie tworzymy liste zadan i ustalamy ich kolejnosc. Ty decydujesz, co jest najwazniejsze dla Twojego biznesu.",
+    },
+    {
+        num: "03",
+        title: "Realizacja i raport",
+        description: "Realizujemy zadania wedlug ustalonych priorytetow. Po kazdym okresie rozliczeniowym dostajesz raport z wykonanych prac.",
+    },
+];
+---
+
+<BaseLayout {metadata}>
+    <!-- Hero -->
+    <section class="relative pt-40 pb-24 px-6 md:px-12 lg:px-24 border-b border-border">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Oferta</span>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 text-balance">
+                    SEO w modelu <span class="italic text-muted-foreground">"pre-paid"</span>
+                </h1>
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-px bg-foreground shrink-0"></div>
+                    <p class="text-lg max-w-xl text-muted-foreground leading-relaxed">
+                        Kupujesz godziny pracy eksperta, nie abonament. Pelna transparentnosc, elastycznosc i kontrola nad budzetem SEO.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-muted">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 reveal-on-scroll">
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Dlaczego <span class="italic text-muted-foreground">pre-paid?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {howItDiffers.map((model) => (
+                    <div class={`p-8 md:p-12 rounded-lg reveal-on-scroll ${model.isHighlighted ? 'bg-foreground text-background' : 'bg-card border border-border'}`}>
+                        <h3 class={`text-2xl font-bold mb-8 ${model.isHighlighted ? 'text-background' : 'text-foreground'}`}>{model.title}</h3>
+                        <ul class="flex flex-col gap-4">
+                            {model.items.map((item) => (
+                                <li class={`flex items-start gap-3 ${model.isHighlighted ? 'text-background/80' : 'text-muted-foreground'}`}>
+                                    <span class={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${model.isHighlighted ? 'bg-background' : 'bg-foreground'}`}></span>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal-on-scroll">
+                <span class="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">Korzysci</span>
+                <h2 class="font-serif text-4xl md:text-6xl leading-tight text-balance">
+                    Co zyskujesz <span class="italic text-muted-foreground">w modelu pre-paid?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                {advantages.map((item) => (
+                    <div class="border-t border-border pt-6 reveal-on-scroll">
+                        <h3 class="text-xl font-bold mb-3">{item.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-32 px-6 md:px-12 lg:px-24 bg-card">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-serif text-4xl md:text-6xl mb-16 reveal-on-scroll text-balance">Jak zaczynamy?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                {processSteps.map((step) => (
+                    <div class="reveal-on-scroll">
+                        <span class="block text-6xl font-serif text-border mb-6">{step.num}</span>
+                        <h3 class="text-xl font-bold mb-4">{step.title}</h3>
+                        <p class="text-muted-foreground leading-relaxed">{step.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-32 px-6 md:px-12 lg:px-24">
+        <div class="max-w-5xl mx-auto text-center reveal-on-scroll">
+            <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl mb-8 text-balance">
+                Zacznij od pierwszego pakietu.
+            </h2>
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+                Nie musisz decydowac sie na wszystko od razu. Zacznij od malego pakietu, przetestuj nasz model wspolpracy i skaluj dalej.
+            </p>
+            <a class="inline-block bg-foreground text-background px-8 py-4 rounded-full font-medium hover:scale-105 transition-transform" href="/#contact">
+                Zapytaj o cennik
+            </a>
+        </div>
+    </section>
+</BaseLayout>
